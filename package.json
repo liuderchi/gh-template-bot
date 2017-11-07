@@ -7,6 +7,7 @@
   "repository": "https://github.com/liuderchi/gh-template-bot.git",
   "scripts": {
     "start": "probot run ./index.js",
+    "start:nodemon": "nodemon --exec 'npm start'",
     "test": "jest && standard"
   },
   "dependencies": {
@@ -15,6 +16,7 @@
   "devDependencies": {
     "jest": "^21.2.1",
     "localtunnel": "^1.8.2",
+    "nodemon": "^1.12.1",
     "standard": "^10.0.3"
   },
   "engines": {
