@@ -32,29 +32,29 @@ const getCommand = issueBody => {
   )(issueBody)
 }
 
-const replaceCommand = (issueBody, template) => {
-  // TODO keep other content of original issueBody
+const insertTemplate = (issueBody, template) => {
+  // TODO replace partial of issueBody
   return template
 }
 
-const insertTemplate = (command, issueBody) => {
+const getNewIssueBody = (command, issueBody) => {
   const { action } = command
 
   switch (action.toUpperCase()) {
     case 'DIALOG':
-      return replaceCommand(issueBody, dialog)
+      return insertTemplate(issueBody, dialog)
     case 'ISSUE':
-      return replaceCommand(issueBody, simpleIssue)
+      return insertTemplate(issueBody, simpleIssue)
     case 'FEATURE':
-      return replaceCommand(issueBody, featureProposal)
+      return insertTemplate(issueBody, featureProposal)
     case 'PR':
-      return replaceCommand(issueBody, simplePR)
+      return insertTemplate(issueBody, simplePR)
     default:
-      return replaceCommand(issueBody, dialog)
+      return insertTemplate(issueBody, dialog)
   }
 }
 
 module.exports = {
   getCommand,
-  insertTemplate,
+  getNewIssueBody,
 }

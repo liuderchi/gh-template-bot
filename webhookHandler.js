@@ -1,4 +1,4 @@
-const { getCommand, insertTemplate } = require('./utils/template')
+const { getCommand, getNewIssueBody } = require('./utils/template')
 
 const handleIssueWH = async context => {
   const issueBody = context.payload.issue.body
@@ -9,7 +9,7 @@ const handleIssueWH = async context => {
   try {
     await context.github.issues.edit(
       context.issue({
-        body: insertTemplate(command, issueBody),
+        body: getNewIssueBody(command, issueBody),
       })
     )
   } catch (e) {
