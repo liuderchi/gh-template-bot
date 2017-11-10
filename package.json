@@ -8,10 +8,12 @@
   "scripts": {
     "start": "probot run ./index.js",
     "start:nodemon": "nodemon --exec 'npm start'",
+    "jest": "jest",
     "test": "jest && standard"
   },
   "dependencies": {
-    "probot": "^3.0.0"
+    "probot": "^3.0.0",
+    "ramda": "^0.25.0"
   },
   "devDependencies": {
     "jest": "^21.2.1",
