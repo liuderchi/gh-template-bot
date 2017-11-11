@@ -1,7 +1,7 @@
 {
   "name": "gh-template-bot",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.1.0-alpha",
+  "description": "Bot to generate markdown templates for different issues and pull requests",
   "author": "liuderchi <liuderchi@gmail.com>",
   "license": "ISC",
   "repository": "https://github.com/liuderchi/gh-template-bot.git",

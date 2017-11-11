@@ -1,15 +1,99 @@
-# gh-template-bot
+<p align="center" >
+  <a href="https://github.com/apps/template">
+    <img height="72" src="./docs/logo.png">
+  </a>
+</p>
 
-> a GitHub App built with [probot](https://github.com/probot/probot) that 
 
-## Setup
+# GitHub Template Bot
 
+<!-- TODO badges  -->
+
+:robot: Generate *Markdown Templates* for different *Issues*, *Pull Requests* and even *Feature Requests*
+
+
+## Why
+
+We *create issues for different purposes*:
+
+> *Report a Bug, Propose a Feature, Asking for Help ...*
+
+But GitHub provides [only one `ISSUE_TEMPLATE.md`][gh-issue-doc] for your workflow. \
+So **Template Bot** is built to [generate templates for different scenarios][prob-to-solve].
+
+
+### Demo
+
+![demo1][demo1]
+
+---
+
+![demo2][demo2]
+
+---
+
+Forgot command? Don't worry. Bot will help you :100:
+
+<img width="650" alt="demo3" src="https://user-images.githubusercontent.com/4994705/32692267-6f6cf030-c6da-11e7-900d-f2c137ca4a1c.png">
+
+
+## Dev Guide
+
+### Run on Local Machine
+  - **Requirements**
+      - Node >= 8.3
+      - Yarn >= 1.3.2
+  - **Environment**
+      - create file `.env` from [`.env.example`](.env.example)
+      - edit `.env` and set [`APP_ID`](.env.example#L2) according to your GitHub App
+      - download private key to project root according to your GitHub App
+      - NOTE: to create and config a Github App please follow [this Probot doc][doc-gh-app]
+  - **Install and Run**
+
+```bash
+$ yarn --pure-lockfile
+$ yarn run start:nodemon
 ```
-# Install dependencies
-npm install
 
-# Run the bot
-npm start
+### Test
+
+```bash
+$ yarn run jest
 ```
 
-See [docs/deploy.md](docs/deploy.md) if you would like to run your own instance of this app.
+### Deploy to Heroku
+
+```bash
+$ sh jobs/deploy-heroku.sh
+```
+
+### Notes
+
+  - Inspired by [evenchange4/gh-polls-bot][gh-polls-bot], a Bot creating polls in your issues.
+  - Built with [probot][probot], an api-friendly nodejs bot framework
+  - Built with [`create-probot-app`][create-probot-app] boilerplate for quick start
+  - Deployed on Heroku following [this doc by Probot][doc-deploy]
+
+
+## [CONTRIBUTING](CONTRIBUTING.md)
+
+<!-- ## CHANGELOG -->
+
+## LICENSE
+
+MIT license https://liuderchi.mit-license.org
+
+
+[gh-issue-doc]: https://help.github.com/articles/creating-an-issue-template-for-your-repository/ "gh-issue-doc"
+[prob-to-solve]: https://github.com/RichardLitt/knowledge/issues/9 "prob-to-solve"
+
+[demo1]: https://user-images.githubusercontent.com/4994705/32691982-f0bc901e-c6d5-11e7-8328-2a06bedf2db6.gif "demo1"
+[demo2]: https://user-images.githubusercontent.com/4994705/32692022-8b8167dc-c6d6-11e7-954c-e8fbb39b4ad0.gif "demo2"
+[demo3]: https://user-images.githubusercontent.com/4994705/32692267-6f6cf030-c6da-11e7-900d-f2c137ca4a1c.png "demo3"
+
+[doc-gh-app]: https://probot.github.io/docs/development/#configure-a-github-app "doc-gh-app"
+
+[gh-polls-bot]: https://github.com/evenchange4/gh-polls-bot "gh-polls-bot"
+[probot]: https://probot.github.io "probot"
+[create-probot-app]: https://github.com/probot/create-probot-app "create-probot-app"
+[doc-deploy]: https://probot.github.io/docs/deployment/#heroku "doc-deploy"
