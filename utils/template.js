@@ -8,7 +8,7 @@ const { simplePR } = require('../templates/simple_pr')
 
 const getCommand = issueBody => {
   const cmdRegex = /^\/template\s+((issue|pr|feature)\b)?/i
-  const cmdRegexForDialog = /[-\*] \[x\] `\/template\s+((issue|pr|feature)`)/im
+  const cmdRegexForDialog = /[-*] \[x\] `\/template\s+((issue|pr|feature)`)/im
 
   const getAction = regex => R.pipe(R.match(regex), R.path(['2']))
   const toUpperCase = action => action.toUpperCase()
@@ -41,16 +41,16 @@ const getNewContent = (command, issueBody) => {
   const { action } = command
 
   switch (action.toUpperCase()) {
-    case 'DIALOG':
-      return insertTemplate(dialog, issueBody)
-    case 'ISSUE':
-      return insertTemplate(simpleIssue, issueBody)
-    case 'FEATURE':
-      return insertTemplate(featureProposal, issueBody)
-    case 'PR':
-      return insertTemplate(simplePR, issueBody)
-    default:
-      return insertTemplate(dialog, issueBody)
+  case 'DIALOG':
+    return insertTemplate(dialog, issueBody)
+  case 'ISSUE':
+    return insertTemplate(simpleIssue, issueBody)
+  case 'FEATURE':
+    return insertTemplate(featureProposal, issueBody)
+  case 'PR':
+    return insertTemplate(simplePR, issueBody)
+  default:
+    return insertTemplate(dialog, issueBody)
   }
 }
 

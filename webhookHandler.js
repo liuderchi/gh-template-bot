@@ -10,7 +10,7 @@ const handleIssueWH = async context => {
 
   try {
     const param = context.issue({
-      body: getNewContent(command, issueBody)
+      body: getNewContent(command, issueBody),
     })
     if (command.action === 'DIALOG') {
       await context.github.issues.createComment(param)
