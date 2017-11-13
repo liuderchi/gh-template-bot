@@ -19,10 +19,12 @@
   },
   "devDependencies": {
     "eslint": "^4.11.0",
+    "eslint-plugin-prettier": "^2.3.1",
     "github-changes": "^1.1.1",
     "jest": "^21.2.1",
     "localtunnel": "^1.8.2",
     "nodemon": "^1.12.1",
+    "prettier": "^1.8.2",
     "standard": "^10.0.3"
   },
   "engines": {

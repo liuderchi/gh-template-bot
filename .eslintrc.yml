@@ -11,10 +11,14 @@ globals:
   expect: true    # jest
 extends:
   - 'eslint:recommended'
+plugins:
+  - prettier
 parserOptions:
   ecmaVersion: 8
   sourceType: module
 rules:
+  prettier/prettier:
+    - warn
   no-console: off
   no-unused-vars:
     - warn
