@@ -6,7 +6,7 @@
   "license": "ISC",
   "repository": "https://github.com/liuderchi/gh-template-bot.git",
   "scripts": {
-    "start": "probot run ./index.js",
+    "start": "probot run ./src/index.js",
     "start:nodemon": "nodemon --exec 'npm start'",
     "jest": "jest",
     "eslint": "eslint ./",
