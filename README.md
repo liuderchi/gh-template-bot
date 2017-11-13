@@ -77,7 +77,9 @@ $ sh jobs/deploy-heroku.sh
 
 ## [CONTRIBUTING](CONTRIBUTING.md)
 
-<!-- ## CHANGELOG -->
+
+## [CHANGELOG](CHANGELOG.md)
+
 
 ## LICENSE
 

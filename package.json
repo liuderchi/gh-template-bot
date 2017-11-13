@@ -10,12 +10,14 @@
     "start:nodemon": "nodemon --exec 'npm start'",
     "jest": "jest",
     "test": "jest && standard"
+    "changelog": "github-changes -o liuderchi -r gh-template-bot -b master -f ./CHANGELOG.md -t CHANGELOG --order-semver --use-commit-body"
   },
   "dependencies": {
     "probot": "^3.0.0",
     "ramda": "^0.25.0"
   },
   "devDependencies": {
+    "github-changes": "^1.1.1",
     "jest": "^21.2.1",
     "localtunnel": "^1.8.2",
     "nodemon": "^1.12.1",
