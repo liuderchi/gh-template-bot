@@ -7,22 +7,24 @@
 
 # GitHub Template Bot
 
-<!-- TODO badges  -->
+[![Build Status][travis-status]][travis-project]
+[![Dependency Status][david-status]][david-project]
+[![DevDependency Status][david-dev-status]][david-dev-project]
+[![PeerDependency Status][david-peer-status]][david-peer-project]
+[![license][license-badge]][license]
 
 :robot: Generate *Markdown Templates* for different *Issues*, *Pull Requests* and even *Feature Requests*
 
 
-## Why
+## Usage
 
-We *create issues for different purposes*:
-
-> *Report a Bug, Propose a Feature, Asking for Help ...*
-
-But GitHub provides [only one `ISSUE_TEMPLATE.md`][gh-issue-doc] for your workflow. \
-So **Template Bot** is built to [generate templates for different scenarios][prob-to-solve].
+- `/template issue` for general issues
+- `/template feature` to *Propose a Feature* in issue
+- `/template pr` for general pull request
+- `/template` to ask :robot: for help
 
 
-### Demo
+## Demo
 
 ![demo1][demo1]
 
@@ -35,6 +37,16 @@ So **Template Bot** is built to [generate templates for different scenarios][pro
 Forgot command? Don't worry. Bot will help you :100:
 
 <img width="650" alt="demo3" src="https://user-images.githubusercontent.com/4994705/32692267-6f6cf030-c6da-11e7-900d-f2c137ca4a1c.png">
+
+
+## Why
+
+We *create issues for different purposes*:
+
+> *Report a Bug, Propose a Feature, Asking for Help ...*
+
+But we are used to setup [one `ISSUE_TEMPLATE.md`][gh-issue-doc] for our workflow. \
+So **Template Bot** is built to [generate templates for different scenarios][prob-to-solve].
 
 
 ## Dev Guide
@@ -69,7 +81,7 @@ $ sh jobs/deploy-heroku.sh
 
 ### Notes
 
-  - Inspired by [evenchange4/gh-polls-bot][gh-polls-bot], a Bot creating polls in your issues.
+  - Inspired by [evenchange4/gh-polls-bot][gh-polls-bot], a Bot creating polls in your issues
   - Built with [probot][probot], an api-friendly nodejs bot framework
   - Built with [`create-probot-app`][create-probot-app] boilerplate for quick start
   - Deployed on Heroku following [this doc by Probot][doc-deploy]
@@ -85,6 +97,16 @@ $ sh jobs/deploy-heroku.sh
 
 MIT license https://liuderchi.mit-license.org
 
+[travis-status]: https://travis-ci.org/liuderchi/gh-template-bot.svg?branch=master "travis-status"
+[travis-project]: https://travis-ci.org/liuderchi/gh-template-bot "travis-project"
+[david-status]: https://david-dm.org/liuderchi/gh-template-bot/status.svg "david-status"
+[david-project]: https://david-dm.org/liuderchi/gh-template-bot "david-project"
+[david-dev-status]: https://david-dm.org/liuderchi/gh-template-bot/dev-status.svg "david-dev-status"
+[david-dev-project]: https://david-dm.org/liuderchi/gh-template-bot#info=devDependencies "david-dev-project"
+[david-peer-status]: https://david-dm.org/liuderchi/gh-template-bot/peer-status.svg "david-peer-status"
+[david-peer-project]: https://david-dm.org/liuderchi/gh-template-bot#info=peerDependencies "david-peer-project"
+[license-badge]: https://img.shields.io/github/license/liuderchi/gh-template-bot.svg "license-badge"
+[license]: http://liuderchi.mit-license.org/ "license"
 
 [gh-issue-doc]: https://help.github.com/articles/creating-an-issue-template-for-your-repository/ "gh-issue-doc"
 [prob-to-solve]: https://github.com/RichardLitt/knowledge/issues/9 "prob-to-solve"
