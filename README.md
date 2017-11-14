@@ -16,12 +16,18 @@
 :robot: Generate *Markdown Templates* for different *Issues*, *Pull Requests* and even *Feature Requests*
 
 
-## Usage
+## Quick Start
+
+1. Install Template Bot at [GitHub Apps Page][gh-app-page]
+
+2. Now you can type one of these commands in issue/PR then submit
 
 - `/template issue` for general issues
 - `/template feature` to *Propose a Feature* in issue
 - `/template pr` for general pull request
 - `/template` to ask :robot: for help
+
+3. Refresh the page. Template Bot will create Markdown Template for you :tada:
 
 
 ## Demo
@@ -107,6 +113,8 @@ MIT license https://liuderchi.mit-license.org
 [david-peer-project]: https://david-dm.org/liuderchi/gh-template-bot#info=peerDependencies "david-peer-project"
 [license-badge]: https://img.shields.io/github/license/liuderchi/gh-template-bot.svg "license-badge"
 [license]: http://liuderchi.mit-license.org/ "license"
+
+[gh-app-page]: https://github.com/apps/template "gh-app-page"
 
 [gh-issue-doc]: https://help.github.com/articles/creating-an-issue-template-for-your-repository/ "gh-issue-doc"
 [prob-to-solve]: https://github.com/RichardLitt/knowledge/issues/9 "prob-to-solve"
