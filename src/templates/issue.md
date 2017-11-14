@@ -1,7 +1,6 @@
-// https://raw.githubusercontent.com/stevemao/github-issue-templates/master/simple/ISSUE_TEMPLATE.md
-// https://www.talater.com/open-source-templates/#/page/98
+ <!-- https://raw.githubusercontent.com/stevemao/github-issue-templates/master/simple/ISSUE_TEMPLATE.md -->
+ <!-- https://www.talater.com/open-source-templates/#/page/98 -->
 
-const simpleIssue = `
 <!--- Provide a general summary of the issue in the Title above -->
 
 ## Description
@@ -33,9 +32,3 @@ const simpleIssue = `
 * Environment name and version (e.g. Chrome 39, node.js 5.4):
 * Operating System and version (desktop or mobile):
 * Link to your project:
-`
-
-
-module.exports = {
-  simpleIssue,
-}

@@ -1,6 +1,5 @@
-// https://www.talater.com/open-source-templates/#/page/98
+<!-- https://www.talater.com/open-source-templates/#/page/98 -->
 
-const featureProposal = `
 <!--- Provide a general summary of the issue in the Title above -->
 
 ## Detailed Description
@@ -19,9 +18,3 @@ const featureProposal = `
 * Environment name and version (e.g. Chrome 39, node.js 5.4):
 * Operating System and version (desktop or mobile):
 * Link to your project:
-`
-
-
-module.exports = {
-  featureProposal,
-}
