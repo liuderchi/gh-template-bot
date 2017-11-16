@@ -2,6 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const R = require('ramda')
 const minimist = require('minimist')
+const rp = require('request-promise')
 
 const { Handlebars } = require('./handlebars')
 
@@ -38,6 +39,10 @@ const getCommand = issueBody => {
   }
 }
 
+const matchIssueTemplate = ({ name }) => R.test(/ISSUE_TEMPLATE/i, name)
+
+const matchPRTemplate = ({ name }) => R.test(/PULL_REQUEST_TEMPLATE/i, name)
+ 
 const insertTemplate = (options, template, issueBody) => {
   // TODO replace partial of issueBody
   return Handlebars.compile(template)(options)
@@ -45,7 +50,7 @@ const insertTemplate = (options, template, issueBody) => {
 
 const readTemplate = fileName => fs.readFileSync(path.join(__dirname, '../templates', fileName), 'utf8')
 
-const getNewContent = (command, customTemplates=[], issueBody) => {
+const getMDContent = async (command, customTemplates=[], issueBody) => {
   const { action, options } = command
 
   const matchAction = ({ name }) => name.toLowerCase() === `${action.toLowerCase()}.md`
@@ -54,22 +59,30 @@ const getNewContent = (command, customTemplates=[], issueBody) => {
   case 'DIALOG':
     return insertTemplate(options, readTemplate('dialog.md'), issueBody)
   case 'ISSUE':
+    if (customTemplates.some(matchIssueTemplate)) {
+      const { download_url } = customTemplates.filter(matchIssueTemplate).shift()
+      return insertTemplate(options, await rp(download_url), issueBody)
+    }
     return insertTemplate(options, readTemplate('issue.md'), issueBody)
   case 'FEATURE':
     return insertTemplate(options, readTemplate('feature.md'), issueBody)
   case 'PR':
+    if (customTemplates.some(matchPRTemplate)) {
+      const { download_url } = customTemplates.filter(matchPRTemplate).shift()
+      return insertTemplate(options, await rp(download_url), issueBody)
+    }
     return insertTemplate(options, readTemplate('pr.md'), issueBody)
   default:
     if (customTemplates.some(matchAction)) {
-      const { content: template } = customTemplates.filter(matchAction).shift()
-      insertTemplate(options, template, issueBody)
+      const { download_url } = customTemplates.filter(matchAction).shift()
+      return insertTemplate(options, await rp(download_url), issueBody)
     } else {
-      insertTemplate(options, readTemplate('dialog.md'), issueBody)
+      return insertTemplate(options, readTemplate('dialog.md'), issueBody)
     }
   }
 }
 
 module.exports = {
   getCommand,
-  getNewContent,
+  getMDContent,
 }

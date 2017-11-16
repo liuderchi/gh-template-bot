@@ -7,7 +7,7 @@ const getCustomTemplates = async (gitHubContext, { owner, repo, path='.github' }
     const { data: customTemplates } = await getContent({ owner, repo, path })
     return customTemplates
       .filter(({ name, type }) => R.match(/\.md$/, name).length > 0 && type === 'file')
-      .map(({ name, content }) => { name, content })
+      .map(R.pick(['name', 'download_url']))
   } catch (e) {
     console.error(e)
     return []

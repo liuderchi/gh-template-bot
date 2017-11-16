@@ -1,4 +1,4 @@
-const { getCommand, getNewContent } = require('../template')
+const { getCommand, getMDContent } = require('../template')
 
 describe('getCommand()', () => {
   test('returns null action when issue body is empty', () => {
@@ -66,27 +66,29 @@ describe('getCommand()', () => {
 
 })
 
-describe('getNewContent()', () => {
+describe('getMDContent()', () => {
 
-  test('insert dialog without options', () => {
-    expect(getNewContent(
+  test('insert dialog without options', async () => {
+    const newContent = await getMDContent(
       {
         action: 'DIALOG',
         options: {},
       },
       null,
       '/template'
-    ).split('\n')[2])
+    )
+    expect(newContent.split('\n')[2])
       .toBe('## 🤖 Hello Human! I Understand These Commands:')})
 
-  test('insert dialog with options', () => {
-    expect(getNewContent(
+  test('insert dialog with options', async () => {
+    const newContent = await getMDContent(
       {
         action: 'DIALOG',
         options: {username: 'derek'},
       },
       null,
       '/template --username derek'
-    ).split('\n')[2])
+    )
+    expect(newContent.split('\n')[2])
       .toBe('## 🤖 Hello derek! I Understand These Commands:')})
 })

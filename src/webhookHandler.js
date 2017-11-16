@@ -1,6 +1,6 @@
 const R = require('ramda')
 
-const { getCommand, getNewContent } = require('./utils/template')
+const { getCommand, getMDContent } = require('./utils/template')
 const { getCustomTemplates } = require('./utils/ghAPI')
 
 const handleIssueWH = async context => {
@@ -14,7 +14,7 @@ const handleIssueWH = async context => {
     const customTemplates = await getCustomTemplates(context.github, { owner, repo })
 
     const param = context.issue({
-      body: getNewContent(command, customTemplates, issueBody),
+      body: await getMDContent(command, customTemplates, issueBody),
     })
 
     if (command.action === 'DIALOG') {
@@ -38,10 +38,13 @@ const handlePullRequestWH = async context => {
   if (!command.action) return
 
   try {
-    // TODO getCustomTemplates like inhandleIssueWH
+    const customTemplates = await getCustomTemplates(
+      context.github,
+      { owner, repo }
+    )
 
     const param = {
-      body: getNewContent(command, null, prBody),
+      body: await getMDContent(command, customTemplates, prBody),
       owner,
       repo,
       number,
