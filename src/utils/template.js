@@ -1,10 +1,9 @@
+const fs = require('fs')
+const path = require('path')
 const R = require('ramda')
 const minimist = require('minimist')
 
-const { dialog } = require('../templates/dialog')
-const { simpleIssue } = require('../templates/simple_issue')
-const { featureProposal } = require('../templates/feature_proposal')
-const { simplePR } = require('../templates/simple_pr')
+const { Handlebars } = require('./handlebars')
 
 
 const getCommand = issueBody => {
@@ -39,25 +38,34 @@ const getCommand = issueBody => {
   }
 }
 
-const insertTemplate = (template, issueBody) => {
+const insertTemplate = (options, template, issueBody) => {
   // TODO replace partial of issueBody
-  return template
+  return Handlebars.compile(template)(options)
 }
 
-const getNewContent = (command, issueBody) => {
-  const { action } = command
+const readTemplate = fileName => fs.readFileSync(path.join(__dirname, '../templates', fileName), 'utf8')
+
+const getNewContent = (command, customTemplates=[], issueBody) => {
+  const { action, options } = command
+
+  const matchAction = ({ name }) => name.toLowerCase() === `${action.toLowerCase()}.md`
 
   switch (action.toUpperCase()) {
   case 'DIALOG':
-    return insertTemplate(dialog, issueBody)
+    return insertTemplate(options, readTemplate('dialog.md'), issueBody)
   case 'ISSUE':
-    return insertTemplate(simpleIssue, issueBody)
+    return insertTemplate(options, readTemplate('issue.md'), issueBody)
   case 'FEATURE':
-    return insertTemplate(featureProposal, issueBody)
+    return insertTemplate(options, readTemplate('feature.md'), issueBody)
   case 'PR':
-    return insertTemplate(simplePR, issueBody)
+    return insertTemplate(options, readTemplate('pr.md'), issueBody)
   default:
-    return insertTemplate(dialog, issueBody)
+    if (customTemplates.some(matchAction)) {
+      const { content: template } = customTemplates.filter(matchAction).shift()
+      insertTemplate(options, template, issueBody)
+    } else {
+      insertTemplate(options, readTemplate('dialog.md'), issueBody)
+    }
   }
 }
 
