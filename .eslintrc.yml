@@ -16,6 +16,8 @@ plugins:
 parserOptions:
   ecmaVersion: 8
   sourceType: module
+  ecmaFeatures:
+    experimentalObjectRestSpread: true
 rules:
   prettier/prettier:
     - off
@@ -28,7 +30,7 @@ rules:
     - error
     - arrays: always-multiline
       objects: always-multiline
-      functions: ignore
+      functions: never
   indent:
     - error
     - 2

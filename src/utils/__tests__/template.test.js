@@ -7,18 +7,47 @@ describe('getCommand()', () => {
         action: null,
       })
   })
-  test('returns DIALOG action when issue body starts with `/template`, but not match issue|pr|feature', () => {
-    expect(getCommand('/template foo '))
+  test('returns null action when issue body starts with `/Template` which is not fully match', () => {
+    expect(getCommand('/Template foo'))
       .toMatchObject({
-        action: 'DIALOG',
+        action: null,
       })
-    expect(getCommand('/template features'))
+  })
+  test('returns Dialog action when issue body starts with `/template`, but not match issue|pr|feature', () => {
+    expect(getCommand('\n\n /template\t '))
       .toMatchObject({
         action: 'DIALOG',
       })
   })
+  test('returns Specific action when issue body starts with `/template`, but not match issue|pr|feature', () => {
+    expect(getCommand('/template foo '))
+      .toMatchObject({
+        action: 'FOO',
+      })
+    expect(getCommand('/template features'))
+      .toMatchObject({
+        action: 'FEATURES',
+      })
+  })
+  test('returns Specific action with options when issue body contains option syntax', () => {
+    expect(getCommand('/template issue --number 123'))
+      .toMatchObject({
+        action: 'ISSUE',
+        options: {
+          number: 123,
+        },
+      })
+    expect(getCommand('/template issue dummy -f --name derek --action filtered'))
+      .toMatchObject({
+        action: 'ISSUE',
+        options: {
+          f: true,
+          name: 'derek',
+        },
+      })
+  })
   test('returns null action when issue body not starts with `/template`, without special markdown checkbox format', () => {
-    expect(getCommand('\n\n/template pr'))
+    expect(getCommand('\nsome words\n/template pr'))
       .toMatchObject({
         action: null,
       })

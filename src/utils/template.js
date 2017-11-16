@@ -1,4 +1,5 @@
 const R = require('ramda')
+const minimist = require('minimist')
 
 const { dialog } = require('../templates/dialog')
 const { simpleIssue } = require('../templates/simple_issue')
@@ -7,29 +8,35 @@ const { simplePR } = require('../templates/simple_pr')
 
 
 const getCommand = issueBody => {
-  const cmdRegex = /^\/template\s+((issue|pr|feature)\b)?/i
   const cmdRegexForDialog = /[-*] \[x\] `\/template\s+((issue|pr|feature)`)/im
+  const getActionInDialog = R.pipe(R.match(cmdRegexForDialog), R.path(['2']))
 
-  const getAction = regex => R.pipe(R.match(regex), R.path(['2']))
-  const toUpperCase = action => action.toUpperCase()
-  const hasCommand = R.pipe(R.match(/^\/template\b/i), R.isEmpty, R.not)
+  const tokenize = R.pipe(
+    str => str.trim().split('\n')[0].trim().split(/\s/),
+    minimist
+  )
 
-  return R.pipe(
-    R.ifElse(
-      getAction(cmdRegexForDialog),
-      R.pipe(getAction(cmdRegexForDialog), toUpperCase),
-      R.ifElse(
-        getAction(cmdRegex),
-        R.pipe(getAction(cmdRegex), toUpperCase),
-        R.ifElse(
-          hasCommand,
-          R.always('DIALOG'),
-          R.always(null)
-        )
-      )
-    ),
-    R.assoc('action', R.__, {})
-  )(issueBody)
+  const getAction = issueBody /*: String */ => {
+    const { _: [ directive, action = 'DIALOG' ] } = tokenize(issueBody)
+    return (directive === '/template') ? action.toUpperCase() : null
+  }
+
+  const getOptions = issueBody /*: String */ => {
+    const { _: [ directive ], ...options } = tokenize(issueBody)
+    return (directive === '/template') ? options : {}
+  }
+
+  return {
+    action: R.ifElse(
+      getActionInDialog,
+      R.pipe(
+        getActionInDialog,
+        action => action.toUpperCase()
+      ),
+      getAction
+    )(issueBody),
+    options: getOptions(issueBody),
+  }
 }
 
 const insertTemplate = (template, issueBody) => {
