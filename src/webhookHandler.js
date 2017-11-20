@@ -29,6 +29,37 @@ const handleIssueWH = async context => {
   }
 }
 
+const handleIssueCommentWH = async context => {
+  const { body: commentBody, id } = context.payload.comment
+  const { name: repo, owner: { login: owner } } = context.payload.repository
+
+  const command = getCommand(commentBody)
+  if (!command.action) return
+
+  try {
+    const customTemplates = await getCustomTemplates(context.github, { owner, repo })
+
+    validateAction(command, customTemplates)
+
+    const param = {
+      body: await getMDContent(command, customTemplates, commentBody),
+      owner,
+      repo,
+      id,
+    }
+
+    if (command.action === 'DIALOG') {
+      await context.github.issues.createComment(context.issue({
+        body: param.body,
+      }))
+    } else {
+      await context.github.issues.editComment(param)
+    }
+  } catch (e) {
+    console.error(e)
+  }
+}
+
 const handlePullRequestWH = async context => {
   const {
     body: prBody,
@@ -67,5 +98,6 @@ const handlePullRequestWH = async context => {
 
 module.exports = {
   handleIssueWH,
+  handleIssueCommentWH,
   handlePullRequestWH,
 }
