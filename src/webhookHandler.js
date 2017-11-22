@@ -1,6 +1,6 @@
 const R = require('ramda')
 
-const { getCommand, getMDContent } = require('./utils/template')
+const { getCommand, validateAction, getMDContent } = require('./utils/template')
 const { getCustomTemplates } = require('./utils/ghAPI')
 
 const handleIssueWH = async context => {
@@ -12,6 +12,8 @@ const handleIssueWH = async context => {
 
   try {
     const customTemplates = await getCustomTemplates(context.github, { owner, repo })
+
+    validateAction(command, customTemplates)
 
     const param = context.issue({
       body: await getMDContent(command, customTemplates, issueBody),
@@ -42,6 +44,8 @@ const handlePullRequestWH = async context => {
       context.github,
       { owner, repo }
     )
+
+    validateAction(command, customTemplates)
 
     const param = {
       body: await getMDContent(command, customTemplates, prBody),
