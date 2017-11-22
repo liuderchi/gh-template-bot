@@ -25,6 +25,7 @@
 - `/template issue` for general issues
 - `/template feature` to *Propose a Feature* in issue
 - `/template pr` for general pull request
+- `/template ReplyDup` to fetch your own `.github/ReplyDup.md` template
 - `/template` to ask :robot: for help
 
 3. Refresh the page. Template Bot will create Markdown Template for you :tada:
@@ -42,7 +43,7 @@
 
 Forgot command? Don't worry. Bot will help you :100:
 
-<img width="650" alt="demo3" src="https://user-images.githubusercontent.com/4994705/32692267-6f6cf030-c6da-11e7-900d-f2c137ca4a1c.png">
+<img width="650" alt="demo3" src="https://user-images.githubusercontent.com/4994705/33139825-ff63b434-cf73-11e7-87c3-076007336a95.png">
 
 
 ## Why
@@ -119,9 +120,9 @@ MIT license https://liuderchi.mit-license.org
 [gh-issue-doc]: https://help.github.com/articles/creating-an-issue-template-for-your-repository/ "gh-issue-doc"
 [prob-to-solve]: https://github.com/RichardLitt/knowledge/issues/9 "prob-to-solve"
 
-[demo1]: https://user-images.githubusercontent.com/4994705/32691982-f0bc901e-c6d5-11e7-8328-2a06bedf2db6.gif "demo1"
-[demo2]: https://user-images.githubusercontent.com/4994705/32692022-8b8167dc-c6d6-11e7-954c-e8fbb39b4ad0.gif "demo2"
-[demo3]: https://user-images.githubusercontent.com/4994705/32692267-6f6cf030-c6da-11e7-900d-f2c137ca4a1c.png "demo3"
+[demo1]: https://user-images.githubusercontent.com/4994705/33142241-588e1f8e-cf7b-11e7-8e6d-73b355ac3a3a.gif "demo1"
+[demo2]: https://user-images.githubusercontent.com/4994705/33141626-5dfc957e-cf79-11e7-9c37-42dd15c4d2db.gif "demo2"
+[demo3]: https://user-images.githubusercontent.com/4994705/33139825-ff63b434-cf73-11e7-87c3-076007336a95.png "demo3"
 
 [doc-gh-app]: https://probot.github.io/docs/development/#configure-a-github-app "doc-gh-app"
 
