@@ -14,8 +14,12 @@
     "changelog": "github-changes -o liuderchi -r gh-template-bot -b master -f ./CHANGELOG.md -t CHANGELOG --order-semver --use-commit-body"
   },
   "dependencies": {
+    "handlebars": "^4.0.11",
+    "minimist": "^1.2.0",
     "probot": "^3.0.0",
-    "ramda": "^0.25.0"
+    "ramda": "^0.25.0",
+    "request": "^2.34",
+    "request-promise": "^4.2.2"
   },
   "devDependencies": {
     "eslint": "^4.11.0",
