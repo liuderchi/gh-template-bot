@@ -1,7 +1,19 @@
-const R = require('ramda')
+//@flow
 
+const R /*: Object */ = require('ramda')
 
-const getCustomTemplates = async (gitHubContext, { owner, repo, path='.github' }) => {
+/*::
+type GetContentPara = {
+  owner: string,
+  repo: string,
+  path: string,
+}
+*/
+
+const getCustomTemplates = async (
+  gitHubContext /*: Object */,
+  { owner, repo, path='.github' } /*: GetContentPara */
+) => {
   const { repos: { getContent } } = gitHubContext
   try {
     const { data: customTemplates } = await getContent({ owner, repo, path })
