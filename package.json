@@ -10,7 +10,9 @@
     "start:nodemon": "nodemon --exec 'npm start'",
     "jest": "jest",
     "eslint": "eslint ./",
-    "test": "npm run eslint && npm run jest",
+    "flow": "flow check",
+    "lint": "npm run eslint",
+    "test": "npm run jest && npm run flow",
     "changelog": "github-changes -o liuderchi -r gh-template-bot -b master -f ./CHANGELOG.md -t CHANGELOG --order-semver --use-commit-body"
   },
   "dependencies": {

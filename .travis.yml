@@ -9,6 +9,10 @@ branches:
   only:
     - master
 
+script:
+  - yarn run lint
+  - yarn run test
+
 notifications:
   email:
     recipients:
