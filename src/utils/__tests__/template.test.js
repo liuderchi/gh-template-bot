@@ -1,3 +1,5 @@
+// @flow
+
 const { getCommand, validateAction, getMDContent } = require('../template')
 
 describe('getCommand()', () => {

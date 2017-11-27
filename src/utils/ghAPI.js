@@ -1,6 +1,6 @@
 //@flow
 
-const R /*: Object */ = require('ramda')
+const R = require('ramda')
 
 
 const getCustomTemplates = async (

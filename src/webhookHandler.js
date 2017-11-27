@@ -1,6 +1,6 @@
 // @flow
 
-const R /*: Object */= require('ramda')
+const R = require('ramda')
 
 const { getCommand, validateAction, getMDContent } = require('./utils/template')
 const { getCustomTemplates } = require('./utils/ghAPI')

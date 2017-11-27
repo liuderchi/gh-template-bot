@@ -1,6 +1,6 @@
 //@flow
 
-const Handlebars /*: Object */ = require('handlebars')
+const Handlebars = require('handlebars')
 
 Handlebars.registerHelper('withDefault', (x, defaultValue) => x ? x : defaultValue)
 
