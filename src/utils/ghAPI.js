@@ -2,13 +2,6 @@
 
 const R /*: Object */ = require('ramda')
 
-/*::
-type GetContentPara = {
-  owner: string,
-  repo: string,
-  path: string,
-}
-*/
 
 const getCustomTemplates = async (
   gitHubContext /*: Object */,

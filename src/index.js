@@ -1,11 +1,5 @@
 //@flow
 
-/*::
-type Robot = {
-  on: function,
-}
-*/
-
 const { handleIssueWH, handleIssueCommentWH, handlePullRequestWH } = require('./webhookHandler')
 
 module.exports = (robot /*: Robot */) => {
