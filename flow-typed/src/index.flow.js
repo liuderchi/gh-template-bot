@@ -14,3 +14,21 @@ declare type GetContentPara = {
   path?: string,
 }
 */
+
+
+/*::
+declare type Payload = {
+  issue: any,
+  repository: any,
+  comment: any,
+  pull_request: any,
+}
+*/
+
+/*::
+declare type Context = {
+  payload: Payload,
+  github: any,
+  issue: { body: string } => string,
+}
+*/
