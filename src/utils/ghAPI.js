@@ -2,10 +2,9 @@
 
 const R = require('ramda')
 
-
-const getCustomTemplates = async (
-  gitHubContext /*: Object */,
-  { owner, repo, path='.github' } /*: GetContentPara */
+const getCustomTemplates /*: (Object, GetContentPara) => Promise<Array<Template>> */ = async (
+  gitHubContext,
+  { owner, repo, path='.github' }
 ) => {
   const { repos: { getContent } } = gitHubContext
   try {

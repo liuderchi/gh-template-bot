@@ -1,27 +1,29 @@
+// @flow
+
 const fs = require('fs')
 const path = require('path')
-const R = require('ramda')
+const R /*: Ramda */ = require('ramda')
 const minimist = require('minimist')
-const rp = require('request-promise')
+const rp /*: string => Promise<string> */ = require('request-promise')
 
 const { Handlebars } = require('./handlebars')
 
 
-const getCommand = issueBody => {
+const getCommand /*: string => Command */ = issueBody => {
   const cmdRegexForDialog = /[-*] \[x\] `\/template\s+((issue|pr|feature)`)/im
-  const getActionInDialog = R.pipe(R.match(cmdRegexForDialog), R.path(['2']))
+  const getActionInDialog /*: string => string */ = R.pipe(R.match(cmdRegexForDialog), R.path(['2']))
 
-  const tokenize = R.pipe(
+  const tokenize /*: string => Object */ = R.pipe(
     str => str.trim().split('\n')[0].trim().split(/\s/),
     minimist
   )
 
-  const getAction = issueBody /*: String */ => {
+  const getAction /*: string => string|null */ = issueBody => {
     const { _: [ directive, action = 'DIALOG' ] } = tokenize(issueBody)
     return (directive === '/template') ? action.toUpperCase() : null
   }
 
-  const getOptions = issueBody /*: String */ => {
+  const getOptions /*: string => Object */ = issueBody => {
     const { _: [ directive ], ...options } = tokenize(issueBody)
     return (directive === '/template') ? options : {}
   }
@@ -39,9 +41,9 @@ const getCommand = issueBody => {
   }
 }
 
-const matchAction = action => ({ name }) => name.toLowerCase() === `${action.toLowerCase()}.md`
+const matchAction /*: string => Template => boolean */ = action => ({ name }) => name.toLowerCase() === `${action.toLowerCase()}.md`
 
-const validateAction = (command, customTemplates) => {
+const validateAction /*: (Command, Array<Template>) => void */ = (command, customTemplates) => {
   const { action } = command
 
   if (!['DIALOG', 'ISSUE', 'FEATURE', 'PR'].includes(action.toUpperCase())) {
@@ -51,18 +53,18 @@ const validateAction = (command, customTemplates) => {
   }
 }
 
-const matchIssueTemplate = ({ name }) => R.test(/ISSUE_TEMPLATE/i, name)
+const matchIssueTemplate /*: Template => boolean */ = ({ name }) => R.test(/ISSUE_TEMPLATE/i, name)
 
-const matchPRTemplate = ({ name }) => R.test(/PULL_REQUEST_TEMPLATE/i, name)
+const matchPRTemplate /*: Template => boolean */ = ({ name }) => R.test(/PULL_REQUEST_TEMPLATE/i, name)
 
-const insertTemplate = (options, template, issueBody) => {
+const insertTemplate /*: (Object, string, string) => string */ = (options, template, issueBody) => {
   // TODO replace partial of issueBody
   return Handlebars.compile(template)(options)
 }
 
-const readTemplate = fileName => fs.readFileSync(path.join(__dirname, '../templates', fileName), 'utf8')
+const readTemplate /*: string => string */ = fileName => fs.readFileSync(path.join(__dirname, '../templates', fileName), 'utf8')
 
-const getMDContent = async (command, customTemplates=[], issueBody) => {
+const getMDContent /*: (Command, Array<Template>, string) => Promise<string> */ = async (command, customTemplates = [], issueBody) => {
   const { action, options } = command
 
   switch (action.toUpperCase()) {

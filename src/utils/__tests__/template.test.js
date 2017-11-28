@@ -76,7 +76,7 @@ describe('getMDContent()', () => {
         action: 'DIALOG',
         options: {},
       },
-      null,
+      [],
       '/template'
     )
     expect(newContent.split('\n')[2])
@@ -88,7 +88,7 @@ describe('getMDContent()', () => {
         action: 'DIALOG',
         options: {username: 'derek'},
       },
-      null,
+      [],
       '/template --username derek'
     )
     expect(newContent.split('\n')[2])
