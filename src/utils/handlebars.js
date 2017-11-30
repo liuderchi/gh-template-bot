@@ -1,3 +1,4 @@
+//@flow
 
 const Handlebars = require('handlebars')
 

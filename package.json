@@ -10,7 +10,9 @@
     "start:nodemon": "nodemon --exec 'npm start'",
     "jest": "jest",
     "eslint": "eslint ./",
-    "test": "npm run eslint && npm run jest",
+    "flow": "flow check",
+    "lint": "npm run eslint",
+    "test": "npm run jest && npm run flow",
     "changelog": "github-changes -o liuderchi -r gh-template-bot -b master -f ./CHANGELOG.md -t CHANGELOG --order-semver --use-commit-body"
   },
   "dependencies": {
@@ -24,6 +26,7 @@
   "devDependencies": {
     "eslint": "^4.11.0",
     "eslint-plugin-prettier": "^2.3.1",
+    "flow-bin": "^0.59.0",
     "github-changes": "^1.1.1",
     "jest": "^21.2.1",
     "localtunnel": "^1.8.2",

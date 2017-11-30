@@ -1,9 +1,11 @@
+// @flow
+
 const R = require('ramda')
 
 const { getCommand, validateAction, getMDContent } = require('./utils/template')
 const { getCustomTemplates } = require('./utils/ghAPI')
 
-const handleIssueWH = async context => {
+const handleIssueWH /*: Context => Promise<void> */ = async context => {
   const { body: issueBody } = context.payload.issue
   const { name: repo, owner: { login: owner } } = context.payload.repository
 
@@ -29,7 +31,7 @@ const handleIssueWH = async context => {
   }
 }
 
-const handleIssueCommentWH = async context => {
+const handleIssueCommentWH /*: Context => Promise<void> */ = async context => {
   const { body: commentBody, id } = context.payload.comment
   const { name: repo, owner: { login: owner } } = context.payload.repository
 
@@ -60,7 +62,7 @@ const handleIssueCommentWH = async context => {
   }
 }
 
-const handlePullRequestWH = async context => {
+const handlePullRequestWH /*: Context => Promise<void> */ = async context => {
   const {
     body: prBody,
     head: { repo: { owner: { login: owner }, name: repo } },
