@@ -11,8 +11,9 @@
     "jest": "jest",
     "eslint": "eslint ./",
     "flow": "flow check",
+    "codecov": "codecov",
     "lint": "npm run eslint",
-    "test": "npm run jest && npm run flow",
+    "test": "npm run jest && npm run flow && npm run codecov",
     "changelog": "github-changes -o liuderchi -r gh-template-bot -b master -f ./CHANGELOG.md -t CHANGELOG --order-semver --use-commit-body"
   },
   "dependencies": {
@@ -24,6 +25,7 @@
     "request-promise": "^4.2.2"
   },
   "devDependencies": {
+    "codecov": "^3.0.0",
     "eslint": "^4.11.0",
     "eslint-plugin-prettier": "^2.3.1",
     "flow-bin": "^0.59.0",
@@ -36,6 +38,21 @@
   },
   "engines": {
     "node": ">= 8.3.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!src/**/*.test.{js,jsx}",
+      "!src/**/*.flow.js"
+    ],
+    "coverageDirectory": "./coverage/",
+    "testPathIgnorePatterns": [
+      "<rootDir>/node_modules/",
+      "<rootDir>/coverage/",
+      "<rootDir>/flow-typed/"
+    ]
   },
   "standard": {
     "env": [
