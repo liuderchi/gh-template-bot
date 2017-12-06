@@ -21,7 +21,7 @@
     "minimist": "^1.2.0",
     "probot": "^3.0.0",
     "ramda": "^0.25.0",
-    "request": "^2.34",
+    "request": "^2.83.0",
     "request-promise": "^4.2.2"
   },
   "devDependencies": {
