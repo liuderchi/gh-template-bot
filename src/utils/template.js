@@ -76,14 +76,19 @@ const getMDContent /*: (Command, Array<Template>, string) => Promise<string> */ 
       return insertTemplate(options, await rp(download_url), issueBody)
     }
     return insertTemplate(options, readTemplate('issue.md'), issueBody)
-  case 'FEATURE':
-    return insertTemplate(options, readTemplate('feature.md'), issueBody)
   case 'PR':
     if (customTemplates.some(matchPRTemplate)) {
       const { download_url } = customTemplates.filter(matchPRTemplate).shift()
       return insertTemplate(options, await rp(download_url), issueBody)
     }
     return insertTemplate(options, readTemplate('pr.md'), issueBody)
+  case 'FEATURE':
+    if (customTemplates.some(matchAction(action))) {
+      const { download_url } = customTemplates.filter(matchAction(action)).shift()
+      return insertTemplate(options, await rp(download_url), issueBody)
+    } else {
+      return insertTemplate(options, readTemplate('feature.md'), issueBody)
+    }
   default:
     if (customTemplates.some(matchAction(action))) {
       const { download_url } = customTemplates.filter(matchAction(action)).shift()
