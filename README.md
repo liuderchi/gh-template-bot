@@ -60,7 +60,7 @@ So **Template Bot** is built to [generate templates for different scenarios][pro
 
 ### Run on Local Machine
   - **Requirements**
-      - Node >= 8.3
+      - Node >= 10
       - Yarn >= 1.3.2
   - **Environment**
       - create file `.env` from [`.env.example`](.env.example)
